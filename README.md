@@ -1,49 +1,102 @@
-# Recoil &middot; [![NPM Version](https://img.shields.io/npm/v/recoil)](https://www.npmjs.com/package/recoil) [![Node.js CI](https://github.com/facebookexperimental/Recoil/workflows/Node.js%20CI/badge.svg)](https://github.com/facebookexperimental/Recoil/actions) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebookexperimental/Recoil/blob/main/LICENSE) [![Follow on Twitter](https://img.shields.io/twitter/follow/recoiljs?label=Follow%20Recoil&style=social)](https://twitter.com/recoiljs)
+# Recoil Community
 
-Recoil is an experimental state management framework for React.
+**Community-maintained fork of Facebook's Recoil library**
 
-Website: https://recoiljs.org
+[![NPM Package](https://img.shields.io/npm/v/recoil-community.svg)](https://www.npmjs.com/package/recoil-community)
+[![License](https://img.shields.io/npm/l/recoil-community.svg)](LICENSE)
 
-## Documentation
+## What is Recoil?
 
-Documentation: https://recoiljs.org/docs/introduction/core-concepts
+Recoil is a state management library for React that provides a simpler, more ergonomic alternative to Redux. It introduces two core concepts:
 
+- **Atoms** — Independent pieces of state that components can subscribe to
+- **Selectors** — Derived state computed from atoms or other selectors
 
-API Reference: https://recoiljs.org/docs/api-reference/core/RecoilRoot
+```jsx
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil-community';
 
+// Define atoms
+const countAtom = atom({
+  key: 'count',
+  default: 0,
+});
 
-Tutorials: https://recoiljs.org/resources
+// Define selectors
+const countLabelSelector = selector({
+  key: 'countLabel',
+  get: ({ get }) => {
+    const count = get(countAtom);
+    return `${count} items`;
+  },
+});
+
+function Counter() {
+  const [count, setCount] = useRecoilState(countAtom);
+  const label = useRecoilValue(countLabelSelector);
+  
+  return (
+    <div>
+      <p>{label}</p>
+      <button onClick={() => setCount(c => c + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+}
+```
+
+## Why Recoil Community?
+
+Recoil was created by Facebook/Meta but was archived in 2025. Recoil Community provides:
+
+- ✅ React 18/19 compatibility
+- ✅ TypeScript 5.x with strict mode
+- ✅ Modern build tooling (ESM/CJS dual package)
+- ✅ Active maintenance and bug fixes
+- ✅ Community support
 
 ## Installation
 
-The Recoil package lives in [npm](https://www.npmjs.com/get-npm).  Please see the [installation guide](https://recoiljs.org/docs/introduction/installation)
-
-
-To install the latest stable version, run the following command:
-
-```shell
-npm install recoil
+```bash
+npm install recoil-community
+# or
+yarn add recoil-community
+# or
+pnpm add recoil-community
 ```
 
-Or if you're using [yarn](https://classic.yarnpkg.com/en/docs/install/):
+**Peer Dependencies:**
+- React >= 18.0.0
+- React DOM >= 18.0.0
 
-```shell
-yarn add recoil
+## Documentation
+
+- [Getting Started](/docs/getting-started.md)
+- [Atoms](/docs/atoms.md)
+- [Selectors](/docs/selectors.md)
+- [Async Data](/docs/async.md)
+- [API Reference](/docs/api.md)
+
+## Migration from Original Recoil
+
+If you're migrating from the archived `recoil` package:
+
+```bash
+npm uninstall recoil
+npm install recoil-community
 ```
 
-Or if you're using [bower](https://bower.io/#install-bower):
+Update your imports:
 
-```shell
-bower install --save recoil
+```diff
+- import { atom, useRecoilState } from 'recoil';
++ import { atom, useRecoilState } from 'recoil-community';
 ```
 
 ## Contributing
 
-Development of Recoil happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving Recoil.
+Contributions are welcome! Please see our [Contributing Guide](/CONTRIBUTING.md) for details.
 
-- [Code of Conduct](./CODE_OF_CONDUCT.md)
-- [Contributing Guide](./CONTRIBUTING.md)
+## License
 
-### License
-
-Recoil is [MIT licensed](./LICENSE).
+MIT License - see [LICENSE](/LICENSE) for details.
