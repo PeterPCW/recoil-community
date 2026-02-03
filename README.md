@@ -3,6 +3,7 @@
 **Community-maintained fork of Facebook's Recoil library**
 
 [![NPM Package](https://img.shields.io/npm/v/recoil-community.svg)](https://www.npmjs.com/package/recoil-community)
+[![npm Downloads](https://img.shields.io/npm/dm/recoil-community.svg)](https://www.npmjs.com/package/recoil-community)
 [![License](https://img.shields.io/npm/l/recoil-community.svg)](LICENSE)
 
 ## What is Recoil?
